@@ -508,6 +508,7 @@ class Game {
                     this.lives--;
                     this.invincibleTimer = 120;
                     if (this.lives <= 0) {
+                        this.shake = 30;
                         this.state = 'GAME_OVER';
                     }
                 }
@@ -542,7 +543,10 @@ class Game {
     onMousePress(e) {
         e.preventDefault();
         if (this.state === 'GAME') {
-            this.bullets.push(new Bullet(this.player.x, this.player.y, this.player.angle));
+            let angleRad = this.player.angle * Math.PI / 180;
+            let bulletX = this.player.x + Math.cos(angleRad) * 40;
+            let bulletY = this.player.y + Math.sin(angleRad) * 40;
+            this.bullets.push(new Bullet(bulletX, bulletY, this.player.angle));
             // Shooting sound placeholder
             // playSound('shoot.wav');
         }
