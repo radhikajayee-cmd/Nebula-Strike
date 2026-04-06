@@ -227,10 +227,20 @@ class Player {
         this.hover += this.hoverSpeed;
     }
 
+    getBulletOrigin() {
+        let angleRad = this.angle * Math.PI / 180;
+        let noseDistance = 35;
+        return {
+            x: this.x + Math.cos(angleRad) * noseDistance,
+            y: this.y + Math.sin(angleRad) * noseDistance
+        };
+    }
+
     draw(ctx) {
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle * Math.PI / 180);
+        // Rotate ship so zero angle points right, matching bullet direction
+        ctx.rotate((this.angle + 90) * Math.PI / 180);
 
         // Glow effect
         ctx.shadowColor = '#00ffff';
@@ -543,10 +553,8 @@ class Game {
     onMousePress(e) {
         e.preventDefault();
         if (this.state === 'GAME') {
-            let angleRad = this.player.angle * Math.PI / 180;
-            let bulletX = this.player.x + Math.cos(angleRad) * 40;
-            let bulletY = this.player.y + Math.sin(angleRad) * 40;
-            this.bullets.push(new Bullet(bulletX, bulletY, this.player.angle));
+            let origin = this.player.getBulletOrigin();
+            this.bullets.push(new Bullet(origin.x, origin.y, this.player.angle));
             // Shooting sound placeholder
             // playSound('shoot.wav');
         }
