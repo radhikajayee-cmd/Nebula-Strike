@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/logo.png" alt="Nebula Strike Logo" width="110" />
+  <img src="logo.png" alt="Nebula Strike Logo" width="110" />
 </p>
 
 <h1 align="center">Nebula Strike</h1>
@@ -21,16 +21,14 @@ Rather than relying on frameworks, the goal here is to demonstrate how far **cor
 
 ## Live Demo
 
-https://your-vercel-link.vercel.app/
+https://nebula-strike-ctul.vercel.app/
 
 ---
 
 ## Preview
 
-<p align="center">
-  <img src="images/gameplay.png" alt="Gameplay Preview" width="85%" />
-</p>
-
+![Game screenshot 1](image.png)
+![Game Screenshot 2](image-1.png)
 ---
 
 ## Core Features
