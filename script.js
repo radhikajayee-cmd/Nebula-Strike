@@ -292,11 +292,15 @@ class Game {
     }
 
     reset() {
-        this.state = 'START';
+        this.state = 'GAME'; // Start immediately for action
         this.player = new Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
         this.keys = new Set();
         this.bullets = [];
         this.enemies = [];
+        // Spawn initial enemies for immediate action
+        for (let i = 0; i < 3; i++) {
+            this.enemies.push(new Enemy());
+        }
         this.spawnTimer = 0;
         this.invincibleTimer = 0;
         this.lives = 3;
@@ -400,8 +404,8 @@ class Game {
         for (let i = 0; i < this.lives; i++) {
             this.ctx.fillStyle = '#ff4444';
             this.ctx.beginPath();
-            ctx.arc(SCREEN_WIDTH - 80 + i * 25, 35, 8, 0, 2 * Math.PI);
-            ctx.fill();
+            this.ctx.arc(SCREEN_WIDTH - 80 + i * 25, 35, 8, 0, 2 * Math.PI);
+            this.ctx.fill();
         }
 
         this.ctx.restore();
